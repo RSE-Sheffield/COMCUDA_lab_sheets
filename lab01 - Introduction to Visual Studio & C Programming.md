@@ -75,7 +75,7 @@ We are going to create a program to create a list of normalised random integers.
 5. We need to make a call to a function declared in a header file `random.h`, include the header file and call `init_random` in the main function.
 6.  Write a simple for loop (using the integer `i` as a counter) in the range of 0 and `NUM_VALUES`. Within the loop make a call to the function `random_ushort` and save the value in the values array at index `i`. Within the loop create a print statement to the console which outputs in a single line the value of `i` and the value you have stored in the array. We can use this to debug the output.
 7.  The `random_ushort` function contains an implicit cast from `int` to `unsigned short`. Modify this so that it uses an explicit cast. This won’t change the program but is good practice.
-8.  Modify your loop by commenting out the debug statement and summing the value into the variable `sum`. Output the sum value after the loop has returned. What is the sum? It should be `4125024`. Add a new local variable `average` using an appropriate data type. Calculate and store the average value of the random numbers.
+8.  Modify your loop by commenting out the print statement and summing the value into the variable `sum`. Output the sum value after the loop has returned. What is the sum? It should be `4125024`. Add a new local variable `average` using an appropriate data type. Calculate and store the average value of the random numbers.
 9.  Normalise the random numbers by subtracting the average. Calculate the minimum and maximum values. A ternary `if` operator
 
    ```
