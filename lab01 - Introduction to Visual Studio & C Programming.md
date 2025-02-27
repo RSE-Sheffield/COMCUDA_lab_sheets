@@ -102,7 +102,7 @@ Max=16221
 
 We are now going to extend the previous exercise by implementing a better random function. 
 
-Add a new Windows 32 console project to the solution called `Lab01_Exercise02`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project, so when you run the program it won’t run the previous project. Make a copy of the source and header file from the previous exercise (rename `exercise1.c` to `exercise2.c`) and move them the new projects source folder. Add them to the project by selecting `Add->Existing Items`.
+Add a new empty project to the solution called `Lab01_Exercise02`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project, so when you run the program it won’t run the previous project. Make a copy of the source and header file from the previous exercise (rename `exercise1.c` to `exercise2.c`) and move them the new projects source folder. Add them to the project by selecting `Add->Existing Items`.
 
 The problem with the existing rand function is that it only returns values in the range of `0-32767` (the positive range of a signed short) despite returning a 32 bit integer. This is due Microsoft preserving backwards compatibility with code utilising the function when it was first implemented (and when 16 bit integers were more common). This is a “feature” of the msvc runtime. You will find in Linux that rand returns a full 32 bit number.
 
@@ -133,7 +133,7 @@ Max= 2170533120
 
 We are now going to extend the previous exercise by implementing a floating point random function. 
 
-Add a new Windows 32 console project to the solution called `Lab01_Exercise03`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project. Make a copy of the source and header file from the previous exercise (rename `exercise3.c` to `exercise4.c`) and move them the new projects source folder. Add them to the project by selecting `Add->Existing Items`.
+Add a new empty project to the solution called `Lab01_Exercise03`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project. Make a copy of the source and header file from the previous exercise (rename `exercise3.c` to `exercise4.c`) and move them the new projects source folder. Add them to the project by selecting `Add->Existing Items`.
 
 1.  Add a new function definition and declaration (`random_float()`) returning a random `float`. This should be a value cast from the `random_uint()` function. Modify the example so that floating point values are calculated for sum, average, min and max. Ensure that the values are printed with 0 decimal places.
 
@@ -152,7 +152,7 @@ Max=2170532608
 
 You are going to create a calculator which takes input from the command line.
 
-Add a new Windows 32 console project to the solution called `Lab01_Exercise04` by right clicking on the solution and selecting `Add->New Project...` To select it as the project which we would like to execute right click on the project and select `Set as Startup Project`. Make a copy of the file `exercise4.c` (which is provided for you) and place it in your projects source directory. Add the file to the project by selecting `Add->Existing Items`.
+Add a new empty project to the solution called `Lab01_Exercise04` by right clicking on the solution and selecting `Add->New Project...` To select it as the project which we would like to execute right click on the project and select `Set as Startup Project`. Make a copy of the file `exercise4.c` (which is provided for you) and place it in your projects source directory. Add the file to the project by selecting `Add->Existing Items`.
 
 The source file contains the basic structure of a simple command line calculator which will understand the following basic commands `"add N"`, `"sub N"`, `"mul N"`, `"div N"` and `"exit"`, where `N` is a floating point value.
 
@@ -172,7 +172,7 @@ The source file contains the basic structure of a simple command line calculator
 
 We are now going to extend the previous exercise by modifying the calculator so that it can read commands from a file.
 
-Add a new Windows 32 console project to the solution called `Lab01_Exercise05`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project. Make a copy of the source file from the previous exercise in the new projects source folder. Rename the source file from `exercise4.c` to `exercise5.c`. Add the source file to the project by selecting `Add->Existing Items`.
+Add a new empty project to the solution called `Lab01_Exercise05`. Make sure that the folder location is the root of your solution (and not one of the previous projects). Set the new project as the start-up project. Make a copy of the source file from the previous exercise in the new projects source folder. Rename the source file from `exercise4.c` to `exercise5.c`. Add the source file to the project by selecting `Add->Existing Items`.
 
 Modify the example so that it can read the provided `commands.calc` file. You will need to implement the following:
 

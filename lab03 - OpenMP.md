@@ -38,7 +38,7 @@ To enable OpenMP support in your project you will need to include the OpenMP hea
 
 # Exercise 1
 
-We are going to start with the code from the previous lab to see what effect OpenMP has on improving the performance. A complete version has been provided for you (`exercise01.c`). Create a new project called Lab03_Exercise01 and include the `exercise01.c` file. Make the usual project changes (`_CRT_SECURE_NO_WARNINGS`) and modify `C++->Language->OpenMP Support` to Yes for both the Debug and Release builds. Without this change your code will be built ignoring the directives i.e. without multi-threading support. 
+We are going to start with the code from the previous lab to see what effect OpenMP has on improving the performance. A complete version has been provided for you (`exercise01.c`). Create a new project called Lab03_Exercise01 and include the `exercise01.c` file. Ensure you have enabled OpenMP as explained above. Without this change your code will be built ignoring the OpenMP directives i.e. without multi-threading support. 
 
 *Note: Don’t forget when performing any benchmarking to use release mode so that the compiler optimisations will be enabled. Take note also of the timing method which is being used.*
 
@@ -78,36 +78,33 @@ c.  Output the complete Mandelbrot set to a file.
 
 Complete the following exercises:
 
-1.  Both stages a and b are candidates for parallelisation using OpenMP. Start by parallelising the outer loop the pixels in stage a. Ensure that you scope variables correctly using the private and shared clauses. Test your code by compiling the result with the serial image. Next parallelise the outer loop over the pixels in stage b. Test your code again by comparing images with the serial version. You should observe a speed up of the code. Try performing a minimum of 1000 iterations to ensure the speed up is measurable. Record your timings below.
+1.  Both stages a and b are candidates for parallelisation using OpenMP. Start by parallelising the outer loop the pixels in stage a. Ensure that you scope variables correctly using the private and shared clauses. Test your code by comparing the result with the serial image. Next parallelise the outer loop over the pixels in stage b. Test your code again by comparing images with the serial version. You should observe a speed up of the code. Try performing a minimum of 1000 iterations to ensure the speed up is measurable. Record your timings below.
 
-    ----------------------------------
-    `ESCAPE_VELOCITY` Elapsed Time (s)
-    ----------------- ----------------
-    Serial Code
-    Open MP Code
-    ----------------------------------
+    |`ESCAPE_VELOCITY`|Elapsed Time (s)|
+    |-----------------|----------------|
+    |Serial Code      |                |
+    |Open MP Code     |                |
+    
 2.  Using the default transfer function has the effect of decreasing the image brightness as the number of iterations increases. This is because the colour value is based on the ratio of the escape velocity (iterations) and the maximum iterations. As the number of iterations increases, detail is added at finer levels along the edge of the Mandelbrot set and so the outer parts of the image become fainter.
 
     **A better method of colouring uses a histogram normalisation by keeping track the number of pixels that reached a given iteration.** 
     
-    Take a look at the `h_ev_transfer()` function. For each iteration that a pixel has passed it sums the histogram count by the total number of pixels to the total output to produce a normalised colour. Change the transfer function by setting the global variable `tf` to `HISTOGRAM_ESCAPE_VELOCITY`. Comment out your OpenMP pragma and test the new transfer function by varying `MAX_ITERATIONS`. You should have a normalised colour range regardless of the `MAX_ITERATIONS` value. Set `MAX_ITERATIONS` to `100` and record the time for the serial version of this transfer function in the table below. We are now going to compare the performance of various OpenMP approaches for summing the histogram value by implementing the following:
+    Take a look at the `h_ev_transfer()` function. For each iteration that a pixel has passed it sums the histogram count by the total number of pixels to the total output to produce a normalised colour. Change the transfer function by setting the global variable `tf` to `HISTOGRAM_ESCAPE_VELOCITY`. Comment out your OpenMP `#pragma` and test the new transfer function by varying `MAX_ITERATIONS`. You should have a normalised colour range regardless of the `MAX_ITERATIONS` value. Set `MAX_ITERATIONS` to `100` and record the time for the serial version of this transfer function in the table below. We are now going to compare the performance of various OpenMP approaches for summing the histogram value by implementing the following:
     
-    1.  Enable OpenMP parallelisation (by uncommenting the pragma). Where the histogram value is increased in stage a (`histogram[i]++`) add an `omp critical` section to avoid race conditions. Record the elapsed time of your code in the table below.
+    1.  Enable OpenMP parallelisation (by uncommenting the `#pragma`). Where the histogram value is increased in stage a (`histogram[i]++`) add an `omp critical` section to avoid race conditions. Record the elapsed time of your code in the table below.
     2.  Modify your code to record a local histogram for each thread of stage a. After the parallel loop, sum these local histograms into the global histogram in serial. If you do this within a parallel structured block (but after the parallel for) then use a barrier and `omp master`.
     3.  Modify your code to use `omp atomic` rather than `omp critical` or local histograms.
     
     Record the elapsed time for each of the three approaches in the table below. 
     
-    --------------------------------------------
-    `HISTOGRAM_ESCAPE_VELOCITY`	Elapsed Time (s)
-    --------------------------- ----------------
-    Serial Code
-    OpenMP Code (omp critical)
-    OpenMP code (omp master)
-    OpenMP code (omp atomic)
-    --------------------------------------------
+    |`HISTOGRAM_ESCAPE_VELOCITY`| Elapsed Time (s)|
+    |---------------------------|-----------------|
+    |Serial Code                |                 |
+    |OpenMP Code (omp critical) |                 |
+    |OpenMP Code (omp master)   |                 |
+    |OpenMP Code (omp atomic)   |                 |
     
-3. Our Mandelbrot image is now parallelised and normalised but shows clear colour banding as the escape velocity is an integer value. Modify your code so that `tf` is equal to `HISTOGRAM_NORMALISED_ITERATION_COUNT`. This will calculate an approximation of the fractional part of the escape velocity which is used in the transfer function to perform a linear interpolation and give smooth shading between the bands. Ensure that the variable `mu` is correctly scoped and your existing OpenMP pragma will work correctly. Change `MAX_ITERATIONS` to `1000`. We are now going to experiment with different scheduling approaches for parallelisation of stage a.
+3. Our Mandelbrot image is now parallelised and normalised but shows clear colour banding as the escape velocity is an integer value. Modify your code so that `tf` is equal to `HISTOGRAM_NORMALISED_ITERATION_COUNT`. This will calculate an approximation of the fractional part of the escape velocity which is used in the transfer function to perform a linear interpolation and give smooth shading between the bands. Ensure that the variable `mu` is correctly scoped and your existing OpenMP `#pragma` will work correctly. Change `MAX_ITERATIONS` to `1000`. We are now going to experiment with different scheduling approaches for parallelisation of stage a.
     1.  Record the elapsed time for the default scheduling in the table below
     2.  Vary the chunk size from `1`, `2`m `4` and `8` and record the timings in the table below.
     3.  Modify the scheduling to `dynamic` and vary the chunk sizes from `1`, `2`, `4` and `8`. Record the timings in the table below.
@@ -126,7 +123,7 @@ Complete the following exercises:
     |`dynamic`        |`2`       |                |
     |`dynamic`        |`4`       |                |
     |`dynamic`        |`8`       |                |
-    |`guided`         |-         |                |
+    |`guided`         | ...      |                |
 
 
     What is the best performing schedule type? Why?
