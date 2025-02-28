@@ -32,7 +32,7 @@ Install GIMP (or Photoshop if available) from the software centre. This takes so
 
 # Enabling OpenMP Support in Visual Studio 2022
 
-To enable OpenMP support in your project you will need to include the OpenMP header file (`omp.h`) and enable the compiler to use the OpenMP runtime. E.g. Access the project setting by right clicking on the project icon in the Solution Explorer and select `Properties`. In the project properties change `C++->Command Line->Additional Options` to `-openmp:llvm` for both the Debug and Release builds
+To enable OpenMP support in your project you will need to include the OpenMP header file (`omp.h`) and enable the compiler to use the OpenMP runtime. E.g. Access the project setting by right clicking on the project icon in the Solution Explorer and select `Properties`. In the project properties change `C/C++->Command Line->Additional Options` to `-openmp:llvm` for both the Debug and Release builds.\footnote{C/C++ settings are only available inside the project properties when the project contains a `.c` or `.cpp` file.}
 
 ![The project properties interface for enabling OpenMP 3.0 support within Visual Studio 2022.](images/lab03_enableOpenmpInVisualStudio.png)
 
