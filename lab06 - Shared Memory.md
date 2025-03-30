@@ -27,14 +27,10 @@ colorlinks: true
 
 # Prerequisites
 
-Open the CUDA occupancy calculator spreadsheet from the CUDA install. 
+Open the CUDA occupancy calculator within NSight Compute (this is a standalone CUDA profiler, distinct from Visual Studio's NSight debugger). 
 
-```
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\tools\
-CUDA_Occupancy_Calculator.xls
-```
-
-*(Link may vary if not using CUDA 11.7)*
+If you create a new project within NSight Compute, there is an option to make an occupancy calculator project.
+You do not need to specify an occupancy calculator file, unless you are loading an earlier occupancy calculator instance.
 
 # Exercise 1 (Part 1)
 
