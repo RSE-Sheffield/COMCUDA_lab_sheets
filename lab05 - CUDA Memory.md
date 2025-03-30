@@ -48,9 +48,9 @@ In exercise one we are going to extend our vector addition kernel. The code is p
     measuredBW=\frac{R_{Bytes} + W_{Bytes}}{t}
     \end{equation}
 
-    Where `R_Bytes` is the number of bytes read and `W_Bytes` is the number of bytes written by the kernel. You can calculate these values by considering how many bytes the kernel reads and writes and multiplying it by the number of threads that are launched. The value `t` is given by your timing data in ms you will need to convert this to seconds to give the bandwidth in GB\\s. Print the value to the console so that you can compare it with the theoretical bandwidth. 
+    Where $R_Bytes$ is the number of bytes read and $W_Bytes$ is the number of bytes written by the kernel. You can calculate these values by considering how many bytes the kernel reads and writes and multiplying it by the number of threads that are launched. The value `t` is given by your timing data in ms you will need to convert this to seconds to give the bandwidth in GB\\s. Print the value to the console so that you can compare it with the theoretical bandwidth. 
 
-    *Note: Don’t forget to switch to Release mode to profile your code execution times.*
+    *Note: Don’t forget to switch to Release mode to benchmark your code execution times.*
 
 # Exercise 2
 
@@ -58,7 +58,7 @@ In the last lecture we learned about the different types of memory and caches wh
 
 The initial code places the spheres in GPU global memory. We know that there are two options for improving this in the form of constant memory and texture/read only memory. Implement the following changes.
 
-The following exercise should be completed by building the device code for the latest supported version of the GPU you are using. For the Diamond computers this is `compute_61,sm_61`. See the notes on "CUDA compilation with Visual Studio" for details on how to set this.
+The following exercise should be completed by building the device code for the latest supported version of the GPU you are using. For the Diamond computers this is `compute_61,sm_61`. See the notes on "Using CUDA with Visual Studio" from Blackboard for details on how to set this.
 
 1.  Create a modified version of ray tracing kernel which uses the read-only data cache (`ray_trace_read_only()`). You should implement this by using the `const` and `__restrict__` qualifiers.  Calculate the execution time of the new version alongside the old version so that they can be directly compared: You will need to also create a modified version of the sphere intersect function (`sphere_intersect_read_only()`).
 2.  Create a modified version of ray tracing kernel which uses the constant data cache (`ray_trace_const()`). Calculate the execution time of the new version alongside the two other versions so that they can be directly compared.
