@@ -89,7 +89,7 @@ We are going to create a program to create a list of normalised random integers.
    Use this shorthand notion in calculating the min and max values. Print the average, min and max values along with the sum.
 
 
-You should get the following values:
+Under Visual Studio you should get the following values:
 
 ```
 Sum=4125024
@@ -97,6 +97,8 @@ Average=16500
 Min=-16247
 Max=16221
 ```
+
+These will vary under different compilers such as GCC, due to the implementation of `rand()` not being strictly defined in the C standard. If you are using a different compiler, test your results versus the [solution code](https://github.com/RSE-Sheffield/COMCUDA_labs/archive/Lab01_sln.zip).
 
 # Exercise 2
 
