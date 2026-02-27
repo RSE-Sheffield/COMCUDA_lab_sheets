@@ -25,11 +25,6 @@ colorlinks: true
 *   Understand and be able measure differing approaches to managing critical sections of parallel code
 *   Understand and be able to measure differing scheduling approaches for OpenMP
 
-
-# Prerequisites
-
-Install GIMP (or Photoshop if available) from the software centre. This takes some time but you will need it for Exercise 2 onwards.
-
 # Enabling OpenMP Support in Visual Studio 2022
 
 To enable OpenMP support in your project you will need to include the OpenMP header file (`omp.h`) and enable the compiler to use the OpenMP runtime. E.g. Access the project setting by right clicking on the project icon in the Solution Explorer and select `Properties`. In the project properties change `C/C++->Command Line->Additional Options` to `-openmp:llvm` for both the Debug and Release builds.\footnote{C/C++ settings are only available inside the project properties when the project contains a `.c` or `.cpp` file.}
@@ -60,7 +55,7 @@ We are going to parallelise an implementation of a Mandelbrot set calculation. U
 
 > A Mandelbrot set is defined by sampling a set of complex numbers defined from a starting point C to see if the result of the iteration \begin{math}z_{n+1}= z_n^2+c\end{math} stays bounded (within the set) or spirals out of control. To plot a Mandelbrot as an image requires that we map each pixel in the image to a complex number and then independently perform a number of iterations to see if the pixel lies within the boundary or reaches an escape velocity (e.g. if we reach the maximum number of iterations the pixel is deemed to lie within the bounds of the set). If a pixel is within the bounds we assign it a colour of black otherwise we can choose a colour transfer function based on the number of iterations it reached before it escaped. This gives us a visual indication of how close the number is to the boundary of the set.
 
-More information on the Mandelbrot set is available [online](https://en.wikipedia.org/wiki/Mandelbrot_set). A serial implementation has been provided for you (`exercise02.c` and `mandelbrot.h`). Create a new project called (`Lab03_Exercise02`) ensure that OpenMP is enabled then build and execute the code. The output is a file `output.ppm` which contains a Mandelbrot image. You can open this is GIMP (if you install this via the software centre). The global variable tf dictates which transfer function to use. Using the default transfer function (`ESCAPE_VELOCITY`) you can change the number of iterations to produce the following outputs.
+More information on the Mandelbrot set is available [online](https://en.wikipedia.org/wiki/Mandelbrot_set). A serial implementation has been provided for you (`exercise02.c` and `mandelbrot.h`). Create a new project called (`Lab03_Exercise02`) ensure that OpenMP is enabled then build and execute the code. The output is a file `output.png` which contains a Mandelbrot image. The global variable tf dictates which transfer function to use. Using the default transfer function (`ESCAPE_VELOCITY`) you can change the number of iterations to produce the following outputs.
 
 The examples below are from running `MAX_ITERATIONS=10` (Figure \ref{fig:mandlebrot10}), `MAX_ITERATIONS=100` (Figure \ref{fig:mandlebrot100}) and `MAX_ITERATIONS=1000` (Figure \ref{fig:mandlebrot1000}).
 
